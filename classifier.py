@@ -48,12 +48,14 @@ for t in target_list:
     for i in range(0, len(data)):
         X_test.append(data.iloc[i].tolist() + data1.iloc[i].tolist() + data2.iloc[i].tolist())
 
+
     clf.fit(X_train, y_train)
-    predicted = clf.predict(X_test)
+    # X_train and X_test
+    predicted = clf.predict(X_train)
     cls_name.append("SVM-fusion")
     dset_name.append(t)
-    total_acc.append(accuracy_score(y_test, predicted))
-    print(t, "\t", accuracy_score(y_test, predicted))
+    total_acc.append(accuracy_score(y_train, predicted))
+    print(t, "\t", accuracy_score(y_train, predicted))
 data = list(zip(cls_name, dset_name, total_acc))
 
 # 指定要保存的文件名
